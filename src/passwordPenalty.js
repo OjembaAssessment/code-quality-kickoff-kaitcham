@@ -5,12 +5,13 @@
  * @param {string} password
  * @returns {number}
  */
-export default function penaltyPoints(password = "") {
-  // The following line ensures, that password is always a string, like the number 128 -> string "128"
-  if (typeof password !== "string") password = String(password);
+export default function penaltyPoints(password = '') {
+  if (password) password = String(password);
 
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  // * * * INSERT YOUR CODE HERE * * * * * * * * * * * * * *
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  //
+  return (
+    password
+      ?.match(/(\w)\1+/g)
+      ?.reduce((acc, curr) => (curr.length > 2 ? (acc += 2) : (acc += 1)), 0) ||
+    0
+  );
 }
