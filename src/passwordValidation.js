@@ -21,8 +21,7 @@ export default function isValidPassword(password = '') {
   if (!/[0-9]/.test(password)) return false; // at least one number
   if (/\W/.test(password)) return false; // no special characters
   if (increasingOrDecreasingSequence(password)) return false; // no increasing or decreasing sequence
-
-  if (forbiddenPasswords.includes(password)) return false;
+  if (forbiddenPasswords.includes(password)) return false; // not in forbidden passwords
   const setOfPassword = new Set([...password]);
   if (setOfPassword.size < 4) return false;
   return true;
