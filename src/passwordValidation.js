@@ -15,13 +15,14 @@ function increasingOrDecreasingSequence(password) {
 
 export default function isValidPassword(password = '') {
   if (typeof password !== 'string') password = String(password);
-  if (!/^.{10}$/.test(password)) return false;
-  if (/\W/.test(password)) return false;
-  if (!/[A-Z]/.test(password)) return false;
-  if (!/[a-z]/.test(password)) return false;
-  if (!/[0-9]/.test(password)) return false;
+  if (!/^.{10}$/.test(password)) return false; // Exactly 10 characters
+  if (!/[a-z]/.test(password)) return false; // at least one lowercase letter
+  if (!/[A-Z]/.test(password)) return false; // at least one uppercase letter
+  if (!/[0-9]/.test(password)) return false; // at least one number
+  if (/\W/.test(password)) return false; // no special characters
+  if (increasingOrDecreasingSequence(password)) return false; // no increasing or decreasing sequence
+
   if (forbiddenPasswords.includes(password)) return false;
-  if (increasingOrDecreasingSequence(password)) return false;
   const setOfPassword = new Set([...password]);
   if (setOfPassword.size < 4) return false;
   return true;
