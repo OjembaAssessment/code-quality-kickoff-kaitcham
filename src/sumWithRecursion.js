@@ -2,5 +2,5 @@
 
 function sumAllElements(arr) {
   if (!arr.length) return 0;
-  return arr.shift() + sumAllElements(arr);
+  return arr.pop() + sumAllElements(arr);
 }
